@@ -25,11 +25,13 @@ try {
     $sql = 'SELECT name, email FROM testingtable
       ORDER BY name';
       $result = $db->query($sql);
-      $row = $result->fetch_assoc();
-  ?>
-      <?php echo $row['name'];
-      echo "<br/>"?>
-      <?php echo $row['email']; ?>
+
+      while ($row = $result->fetch_assoc()) { ?>
+
+          <?php echo $row['name']; echo " - "?>
+          <?php echo $row['email']; echo "<br/>"?>
+
+      <?php } ?>
       <?php $db->close(); ?>
 </body>
 </html>
