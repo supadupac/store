@@ -1,0 +1,11 @@
+
+/* CSS; OWNED AND MANAGED BY CHRIS LEE leechristopher42@gmail.com */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.jumbotext {
+  font-style: 'Open Sans';
+  text-align: center;
+  font-size: 100px;
+  margin-top: 200px;
+}
