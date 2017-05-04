@@ -1,10 +1,12 @@
 <?php
-  $db = new mysqli(
-    'rogue.store.whiteoakmn.com',
-    'fry_prod',
-    'T3rr4C0tt4#42',
-    'whiteoakmn_store_db'
-  );
+
+ $config = parse_ini_file('../config.ini');
+
+ $db = new mysqli(
+   $config['hostname'],
+   $config['username'],
+   $config['password'],
+   $config['dbname']);
 
   if ($db->connect_error) {
     $error = $db->connect_error;
