@@ -24,6 +24,7 @@
   </head>
 
   <body>
+    <!-- Nav -->
     <nav class="navbar navbar-toggleable-xl navbar-inverse bg-primary">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,22 +33,31 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav justify-content-end">
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Login</a>
           </li>
         </ul>
       </div>
     </nav>
 
-    <!-- Nav
-    <nav class="navbar navbar-inverse bg-primary">
-      <a class="navbar-brand" href="http://store.whiteoakmn.com/">WhiteOakStore</a>
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="#">Login <span class="sr-only">(current)</span> </a>
-      </div>
-    </nav>
-  -->
+    <!-- Begin Login Content -->
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Login to Your Account</h1><br>
+				  <form>
+					<input type="text" name="user" placeholder="Username">
+					<input type="password" name="pass" placeholder="Password">
+					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+				  </form>
 
-    <!--Content -->
+				  <div class="login-help">
+					<a href="#">Register</a> - <a href="#">Forgot Password</a>
+				  </div>
+				</div>
+			</div>
+		  </div>
+
+    <!-- Body Content -->
     <div class="container-fluid">
       <div class="row">
         <div class="col">
@@ -58,7 +68,7 @@
         <div class="col">
           <center>
           <!-- Login Link -->
-          <a href="#" class="btn btn-primary btn-block" id="login">Login</a>
+          <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-primary btn-block" id="login">Login</a>
         </center>
         </div>
       </div>
