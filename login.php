@@ -11,10 +11,10 @@
         redirect_to("dbtest.php");
         $message = "Logging in as {username}";
       } else {
-        redirect_to("login.php");
+        $message = "Invalid Credentials";
       }
     } else {
-    $message = "Please log in";
+    $message = "Opps, an error occured <br /> Try Again";
   }
 ?>
 
@@ -60,34 +60,44 @@
 
     <!-- Begin Login Content -->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Modal Login" aria-hidden="true">
-    	  <div class="modal-dialog">
-				<div class="loginmodal-container">
-					<h1>Login to Your Account</h1><br>
-				  <form id="login" action="index.php" method="post">
-  					<input type="text" name="username" placeholder="Username">
-  					<input type="password" name="password" placeholder="Password">
-  					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
-				  </form>
+        <div class="modal-dialog">
+        <div class="loginmodal-container">
+          <h1>Login to Your Account</h1><br>
+          <form id="login" action="index.php" method="post">
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+          </form>
 
-				  <div class="login-help">
-					<a href="#">Register</a> - <a href="#">Forgot Password</a>
-				  </div>
-				</div>
-			</div>
-		  </div>
+          <div class="login-help">
+          <a href="#">Register</a> - <a href="#">Forgot Password</a>
+          </div>
+        </div>
+      </div>
+      </div>
+
 
     <!-- Body Content -->
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <h1 class="jumbotext">Welcome to the Store</h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
           <center>
-          <!-- Login Link -->
-          <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-primary btn-block" id="login-btn">Login</a>
+          <!-- Begin Login Content -->
+      				<div class="loginmodal-container loginmodal-container-marg">
+      					<h1>Login to Your Account</h1><br>
+                <?php echo $message ?><br /><br />
+      				  <form id="login" action="login.php" method="post">
+        					<input type="text" name="username" placeholder="Username">
+        					<input type="password" name="password" placeholder="Password">
+        					<input type="submit" name="login" class="loginmodal-submit" value="Login">
+      				  </form>
+
+      				  <div class="login-help">
+      					<a href="#">Register</a> - <a href="#">Forgot Password</a>
+      				  </div>
+      				</div>
+              <br />
+              <br />
         </center>
         </div>
       </div>
