@@ -1,3 +1,22 @@
+<?php
+  require_once("functions.php");
+
+  if (isset($_POST["login"])) {
+    //if login was submitted
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+      if ($username == "chris" && $password == "secret") {
+        //successful login
+        redirect_to("dbtest.php");
+        $message = "Logging in as {username}";
+      } else {
+        $message = "We are unable to locate your account";
+      }
+    } else {
+    $message = "Please log in";
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,14 +59,14 @@
     </nav>
 
     <!-- Begin Login Content -->
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Modal Login" aria-hidden="true">
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
 					<h1>Login to Your Account</h1><br>
-				  <form>
-					<input type="text" name="user" placeholder="Username">
-					<input type="password" name="pass" placeholder="Password">
-					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+				  <form action="index.php" method="post">
+  					<input type="text" name="username" placeholder="Username">
+  					<input type="password" name="password" placeholder="Password">
+  					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
 				  </form>
 
 				  <div class="login-help">
@@ -67,8 +86,9 @@
       <div class="row">
         <div class="col">
           <center>
+          <?php echo $message ?><br />
           <!-- Login Link -->
-          <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-primary btn-block" id="login">Login</a>
+          <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-primary btn-block" id="login-btn">Login</a>
         </center>
         </div>
       </div>
@@ -80,6 +100,8 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- http://tether.io/ Library to help with positioning for Bootstrap 4.0 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
