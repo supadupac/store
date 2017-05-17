@@ -1,13 +1,21 @@
 <?php
+  include("db.php");
   require_once("functions.php");
 
   if (isset($_POST["login"])) {
-    //if login was submitted
-    $username = $_POST["username"];
-    $password = $_POST["password"];
 
-      if ($username == "chris" && $password == "secret") {
-        //successful login
+    session_start();
+
+    $sql = "SELECT userName, pass, eMail FROM accounts
+      WHERE userName = '$username', pass = '$password'";
+      if ($result = $db->query($sql)) {
+      $row_cnt = $result->num_rows;
+    }
+
+    echo $row_cnt;
+
+      if ($row_cnt = 1) {
+        $_SESSION['username'] = $username;
         redirect_to("dbtest.php");
         $message = "Logging in as {username}";
       } else {
@@ -48,7 +56,7 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">WhiteOakStore</a>
+      <a class="navbar-brand" href="index.php">WhiteOakStore</a>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav justify-content-end">
           <li class="nav-item">
@@ -89,6 +97,14 @@
           <!-- Login Link -->
           <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-primary btn-block" id="login-btn">Login</a>
         </center>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <center>
+            <br>
+                <?php echo $row_cnt ?>
+            </center>
         </div>
       </div>
     </div>

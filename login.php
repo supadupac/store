@@ -1,4 +1,5 @@
 <?php
+  require("db.php");
   require_once("functions.php");
 
   if (isset($_POST["login"])) {
@@ -6,16 +7,23 @@
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-      if ($username == "chris" && $password == "secret") {
-        //successful login
-        redirect_to("dbtest.php");
-        $message = "Logging in as {username}";
+    $sql = "SELECT * FROM accounts
+      WHERE userName = '$username'
+      AND pass = '$password'";
+    $result = $db->query($sql);
+    $row = $result->fetch_array();
+
+    if(!empty($row['userName']) AND !empty($row['pass']))
+      {
+        session_start();
+        $_SESSION['userName'] = $row['userName'];
+        redirect_to("member.php");
       } else {
-        $message = "Invalid Credentials";
+        echo "Sorry, you have not logged in correctly, please retry";
       }
     } else {
-    $message = "Opps, an error occured <br /> Try Again";
-  }
+      $message = "Please log in.";
+    }
 ?>
 
 <!DOCTYPE html>
