@@ -6,6 +6,7 @@
     //if login was submitted
     $username = $_POST["username"];
     $password = $_POST["password"];
+    $message = "Enter in your credentials";
 
     $sql = "SELECT * FROM accounts
       WHERE userName = '$username'
@@ -14,15 +15,15 @@
     $row = $result->fetch_array();
 
     if(!empty($row['userName']) AND !empty($row['pass']))
-      {
-        session_start();
-        $_SESSION['userName'] = $row['userName'];
-        redirect_to("member.php");
-      } else {
-        echo "Sorry, you have not logged in correctly, please retry";
-      }
+        {
+          session_start();
+          $_SESSION['userName'] = $row['userName'];
+          redirect_to("member.php");
+        } else {
+          $message = "Sorry, you have not logged in correctly, please retry";
+        }
     } else {
-      $message = "Please log in.";
+      $message = "Please enter in your credentials";
     }
 ?>
 
@@ -56,7 +57,7 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">WhiteOakStore</a>
+      <a class="navbar-brand" href="index.php">WhiteOakStore</a>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav justify-content-end">
           <li class="nav-item">

@@ -3,27 +3,27 @@
   require_once("functions.php");
 
   if (isset($_POST["login"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $message = "Enter in your credentials";
 
-    session_start();
+    $sql = "SELECT * FROM accounts
+      WHERE userName = '$username'
+      AND pass = '$password'";
+    $result = $db->query($sql);
+    $row = $result->fetch_array();
 
-    $sql = "SELECT userName, pass, eMail FROM accounts
-      WHERE userName = '$username', pass = '$password'";
-      if ($result = $db->query($sql)) {
-      $row_cnt = $result->num_rows;
-    }
-
-    echo $row_cnt;
-
-      if ($row_cnt = 1) {
-        $_SESSION['username'] = $username;
-        redirect_to("dbtest.php");
-        $message = "Logging in as {username}";
-      } else {
-        redirect_to("login.php");
-      }
+    if(!empty($row['userName']) AND !empty($row['pass']))
+        {
+          session_start();
+          $_SESSION['userName'] = $row['userName'];
+          redirect_to("member.php");
+        } else {
+          redirect_to("login.php");
+        } 
     } else {
-    $message = "Please log in";
-  }
+      $message = "Please log in.";
+    }
 ?>
 
 <!DOCTYPE html>
